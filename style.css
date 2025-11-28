@@ -1,0 +1,63 @@
+/* Make sure the page takes full screen and hides scrollbars */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Main container centered using Flexbox */
+#main {
+  height: 100%;
+  width: 100%;
+  background-color: #111; /* Dark background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image container with responsive size */
+#image {
+  height: 30vw;
+  width: 60vw;
+  position: relative; /* Needed so overlay can be positioned inside */
+}
+
+/* Custom circular cursor that follows the mouse */
+#cursor {
+  height: 22px;
+  width: 22px;
+  background-color: rgba(191, 146, 146, 0.889); /* Soft reddish tone */
+  border-radius: 50%; /* Makes it circular */
+  position: fixed; /* Floats above everything */
+  font-size: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 9; /* Keeps it above most elements */
+}
+
+/* Image fills its container and maintains aspect ratio */
+#image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Transparent overlay placed above the image */
+#overlay {
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 10; /* Higher than cursor (z-index 9) */
+
+  /*
+    🧠 Why we use this overlay:
+    When the cursor hovers directly over an <img> tag,
+    some browsers treat it like a separate layer, causing flickering or jitter
+    in cursor animation. By placing a transparent overlay above the image,
+    we ensure the mouse events are smooth and consistent — no weird jumps!
+  */
+}
